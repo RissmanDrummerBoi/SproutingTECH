@@ -9,7 +9,7 @@ ET-GEO Hackathon 2026 – irrigation dashboard for wine growers using TerraClim'
 
 ## Contributors
 -Risana Kelly Siweya
--
+-Nikelwa Sophazi
 -
 -
 
