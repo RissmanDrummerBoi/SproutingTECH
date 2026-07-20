@@ -1,0 +1,312 @@
+:root {
+  /* Palette — "overcast morning in the vines": cool, muted, instrument-panel */
+  --soil-dark: #241c15;
+  --vine-green: #2f4436;
+  --vine-green-light: #4d6a56;
+  --sky: #dbe1da;
+  --sky-panel: #eef1ec;
+  --line: #c3cabf;
+  --clay: #b85a2e;      /* severe accent, used sparingly */
+  --gold: #c69a2a;      /* ETo / mild accent */
+  --teal: #2c6b5b;      /* ETa accent */
+  --ink: #241c15;
+  --ink-muted: #5c6058;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", monospace;
+
+  --radius: 10px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--sky);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 1.75rem 4rem;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: -0.01em;
+  color: var(--vine-green);
+  margin: 0;
+}
+
+.app-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.3rem;
+}
+
+.app-date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  text-align: right;
+}
+
+/* ---------- Grid ---------- */
+.block-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.state-msg {
+  font-family: var(--font-mono);
+  color: var(--ink-muted);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+/* ---------- Block card ---------- */
+.block-card {
+  background: var(--sky-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.block-card:hover {
+  border-color: var(--vine-green-light);
+  transform: translateY(-2px);
+}
+
+.block-card:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.block-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.block-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--vine-green);
+  margin: 0 0 0.15rem;
+}
+
+.block-variety {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+.block-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.block-action {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.block-action.irrigate { color: var(--clay); }
+.block-action.hold { color: var(--vine-green-light); }
+
+/* ---------- Stress badge ---------- */
+.stress-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+.stress-badge.none { color: var(--vine-green-light); }
+.stress-badge.mild { color: var(--gold); }
+.stress-badge.severe { color: var(--clay); }
+
+.stress-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Moisture gauge (signature element) ---------- */
+.gauge-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-value {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  fill: var(--ink);
+}
+
+.gauge-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  fill: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Detail view ---------- */
+.back-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--vine-green);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 1.25rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.detail-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--vine-green);
+  margin: 0 0 0.2rem;
+}
+
+.detail-sub {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+}
+
+.recommend-panel {
+  background: var(--sky-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.4rem;
+  min-width: 220px;
+}
+
+.recommend-panel .headline {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--vine-green);
+  margin-bottom: 0.15rem;
+}
+
+.recommend-panel .figure {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.chart-panel {
+  background: var(--sky-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.25rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.legend-row {
+  display: flex;
+  gap: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+/* ---------- Readings table ---------- */
+.readings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.readings-table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--line);
+  padding: 0.5rem 0.6rem;
+}
+
+.readings-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.readings-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .app-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .app-date { text-align: left; }
+}
